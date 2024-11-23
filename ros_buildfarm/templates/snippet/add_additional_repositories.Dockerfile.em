@@ -17,6 +17,9 @@ for distribution, archive_type in product((os_code_name, os_code_name + '-update
 RUN grep -q -F -e "deb http://old-releases.ubuntu.com" /etc/apt/sources.list && (@(' && '.join(old_releases_commands))) || (@(' && '.join(archive_commands)))
 RUN echo "Package: *\nPin: origin http://repo.ros2.org/ubuntu/building\nPin-Priority: 400" > /etc/apt/preferences.d/ros.repo
 RUN cat /tmp/keys/0.key | apt-key add -
+RUN cat /tmp/keys/0.key
+RUN echo "deb [arch=amd64] http://repo.ros2.org/ubuntu/building focal main" > /etc/apt/sources.list.d/ros2.list
+RUN echo -e "Package: *\nPin: origin repo.ros2.org\nPin-Priority: 100" > /etc/apt/preferences.d/ros.repo
 @[  elif arch in ['armhf', 'armv8']]@
 @{
 commands = []
