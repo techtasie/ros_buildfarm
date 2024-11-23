@@ -152,6 +152,7 @@ def _get_git_repository_version(path):
     if env_var in os.environ:
         git_branch = os.environ[env_var]
         prefix = 'origin/'
+        print("AOILI " + git_branch)
         if git_branch.startswith(prefix):
             return git_branch[len(prefix):]
 
