@@ -16,7 +16,7 @@ for distribution, archive_type in product((os_code_name, os_code_name + '-update
 }@
 RUN grep -q -F -e "deb http://old-releases.ubuntu.com" /etc/apt/sources.list && (@(' && '.join(old_releases_commands))) || (@(' && '.join(archive_commands)))
 RUN echo "Package: *\nPin: origin localhost\nPin-Priority: 400" > /etc/apt/preferences.d/ubuntu-repo
-RUN curl http://lab-jen/ros.key| apt-key add -
+RUN cat /tmp/keys/0.key | apt-key add -
 @[  elif arch in ['armhf', 'armv8']]@
 @{
 commands = []
